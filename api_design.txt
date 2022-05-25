@@ -1,0 +1,4 @@
+블로그 생성하기 - post - /api/posts - post
+블로그 조회하기 - get - /api/posts - List<post>
+블로그 변경하기 - put - /api/posts/{id}	- long
+블로그 삭제하기 - delete - /api/posts/{id} - long
