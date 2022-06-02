@@ -1,11 +1,10 @@
-package com.sparta.blogmyself.domain;
+package com.sparta.blogmyself.dto;
 
 import lombok.Getter;
 
 @Getter
 public class PostRequestDto {
+//    private Long userId;
     private String title;
-    private String username;
-    private String password;
     private String contents;
 }

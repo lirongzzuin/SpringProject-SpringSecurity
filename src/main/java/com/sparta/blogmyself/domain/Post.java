@@ -1,5 +1,8 @@
 package com.sparta.blogmyself.domain;
 
+import com.sparta.blogmyself.dto.PostRequestDto;
+import com.sparta.blogmyself.security.UserDetailsImpl;
+import java.util.List;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -25,24 +28,33 @@ public class Post extends Timestamped {
     @Column(nullable = false)
     private String contents;
 
-    public Post(String title, String username, String password, String contents) {
+    @Column(nullable = false)
+    private Long userId;
+
+
+    public Post(String title, String username, String password, String contents, Long userId) {
         this.title = title;
         this.username = username;
         this.password = password;
         this.contents = contents;
+        this.userId = userId;
     }
 
-    public Post(PostRequestDto requestDto) {
+    public Post(PostRequestDto requestDto, Long userId) {
+        // 관심상품을 등록한 회원 Id 저장
+        this.userId = userId;
         this.title = requestDto.getTitle();
-        this.username = requestDto.getUsername();
-        this.password = requestDto.getPassword();
         this.contents = requestDto.getContents();
     }
 
-    public void update(PostRequestDto requestDto){
+
+    public void update(PostRequestDto requestDto, Long userId){
         this.title = requestDto.getTitle();
-        this.username = requestDto.getUsername();
-        this.password = requestDto.getPassword();
         this.contents = requestDto.getContents();
+        this.userId = userId;
+    }
+
+    public void delete(Long userId){
+        this.userId = userId;
     }
 }
